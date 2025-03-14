@@ -1,7 +1,6 @@
 const quoteElement = document.getElementById('quote');
 const authorElement = document.getElementById('author');
 const newQuoteButton = document.getElementById('new-quote');
-const categorySelect = document.getElementById('category-select');
 const favoriteBtn = document.getElementById('favorite-btn');
 const shareBtn = document.getElementById('share-btn');
 const favoritesContent = document.getElementById('favorites-content');
@@ -16,19 +15,19 @@ const appContainer = document.querySelector('.app-container');
 
 let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
 let currentQuote = null;
+let currentCategory = 'all';
 
 async function getRandomQuote(category = 'all') {
     return await quotes.getQuote(category);
 }
 
 async function displayQuote() {
-    const category = categorySelect.value;
     quoteElement.style.opacity = '0';
     quoteElement.textContent = 'Loading...';
     authorElement.textContent = '';
     
     try {
-        currentQuote = await getRandomQuote(category);
+        currentQuote = await getRandomQuote(currentCategory);
         setTimeout(() => {
             quoteElement.textContent = `"${currentQuote.text}"`;
             authorElement.textContent = `- ${currentQuote.author}`;
@@ -144,7 +143,6 @@ displayQuote();
 newQuoteButton.addEventListener('click', displayQuote);
 
 // Event Listeners
-categorySelect.addEventListener('change', displayQuote);
 favoriteBtn.addEventListener('click', toggleFavorite);
 shareBtn.addEventListener('click', shareQuote);
 themeBtn.addEventListener('click', toggleTheme);
@@ -170,6 +168,16 @@ navBtns.forEach(btn => {
             sidebar.classList.remove('active');
             appContainer.classList.remove('sidebar-active');
         }
+    });
+});
+
+// Add after other event listeners
+document.querySelectorAll('.category-card').forEach(card => {
+    card.addEventListener('click', async () => {
+        const category = card.dataset.category;
+        currentCategory = category;
+        await displayQuote();
+        switchView('daily-view');
     });
 });
 

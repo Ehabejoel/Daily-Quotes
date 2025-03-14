@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://api.api-ninjas.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'unsafe-inline'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://api.api-ninjas.com; style-src 'self' 'unsafe-inline' https://*.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://*.gstatic.com https://cdnjs.cloudflare.com; style-src-elem 'self' 'unsafe-inline' https://*.googleapis.com https://cdnjs.cloudflare.com">
     <title>Daily Motivation Quotes</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.Agoogleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="app-container">
@@ -60,17 +60,29 @@
 
             <div class="view hidden" id="discover-view">
                 <div class="categories-grid">
-                    <div class="category-select-wrapper">
-                        <select id="category-select">
-                            <option value="all">All Categories</option>
-                            <option value="motivation">Motivation</option>
-                            <option value="success">Success</option>
-                            <option value="life">Life</option>
-                            <option value="wisdom">Wisdom</option>
-                            <option value="happiness">Happiness</option>
-                            <option value="love">Love</option>
-                            <option value="inspiration">Inspiration</option>
-                        </select>
+                    <div class="category-card" data-category="all">
+                        <i class="fas fa-quote-right"></i>
+                        <h3>All Quotes</h3>
+                    </div>
+                    <div class="category-card" data-category="inspiration">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Inspiration</h3>
+                    </div>
+                    <div class="category-card" data-category="success">
+                        <i class="fas fa-trophy"></i>
+                        <h3>Success</h3>
+                    </div>
+                    <div class="category-card" data-category="life">
+                        <i class="fas fa-heart"></i>
+                        <h3>Life</h3>
+                    </div>
+                    <div class="category-card" data-category="wisdom">
+                        <i class="fas fa-brain"></i>
+                        <h3>Wisdom</h3>
+                    </div>
+                    <div class="category-card" data-category="happiness">
+                        <i class="fas fa-smile-beam"></i>
+                        <h3>Happiness</h3>
                     </div>
                 </div>
             </div>
